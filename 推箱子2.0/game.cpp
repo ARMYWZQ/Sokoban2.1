@@ -1,11 +1,11 @@
-#include"head.h"
+#include"founction.h"
 
 void game_face(int level, int step_num, int restep_num);
 void pause();
 void lastlevel();
 void passlevel(int step_num);
 
-char mainloop(int level)
+char gameloop(int level)
 {
 	mciSendString(TEXT("open Boxmove.wav alias Boxmove"), NULL, 0, NULL);
 

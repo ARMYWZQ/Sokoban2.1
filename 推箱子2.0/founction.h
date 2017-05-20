@@ -9,7 +9,8 @@
 
 #define maps_num 35
 
-char mainloop(int level);
+void mainloop();
+char gameloop(int level);
 void main_interface1();
 void main_interface2();
 void jieyu();
