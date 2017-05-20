@@ -7,37 +7,37 @@ void passlevel(int step_num);
 
 char mainloop(int level)
 {
-	mciSendString(TEXT("open huadong.wav alias huadong"), NULL, 0, NULL);
+	mciSendString(TEXT("open Boxmove.wav alias Boxmove"), NULL, 0, NULL);
 
-	PIMAGE pimg_qiang = newimage();
-	PIMAGE pimg_diban = newimage();
-	PIMAGE pimg_xiangzi1 = newimage();
-	PIMAGE pimg_xiangzi2 = newimage();
-	PIMAGE pimg_zhongdian = newimage();
-	PIMAGE pimg_renshang1 = newimage();
-	PIMAGE pimg_renshang2 = newimage();
-	PIMAGE pimg_renxia1 = newimage();
-	PIMAGE pimg_renxia2 = newimage();
-	PIMAGE pimg_renyou1 = newimage();
-	PIMAGE pimg_renyou2 = newimage();
-	PIMAGE pimg_renzuo1 = newimage();
-	PIMAGE pimg_renzuo2 = newimage();
-	PIMAGE pimg_kongbai = newimage();
+	PIMAGE pimg_wall = newimage();
+	PIMAGE pimg_land = newimage();
+	PIMAGE pimg_BoxYellow = newimage();
+	PIMAGE pimg_BoxRed = newimage();
+	PIMAGE pimg_aim = newimage();
+	PIMAGE pimg_ManUP1 = newimage();
+	PIMAGE pimg_ManUP2 = newimage();
+	PIMAGE pimg_ManDOWN1 = newimage();
+	PIMAGE pimg_ManDOWN2 = newimage();
+	PIMAGE pimg_ManRIGHT1 = newimage();
+	PIMAGE pimg_ManRIGHT2 = newimage();
+	PIMAGE pimg_ManLEFT1 = newimage();
+	PIMAGE pimg_ManLEFT2 = newimage();
+	PIMAGE pimg_black = newimage();
 
-	getimage(pimg_qiang, "qiang.jpg", 0, 0);
-	getimage(pimg_diban, "diban.jpg", 0, 0);
-	getimage(pimg_xiangzi1, "xiangzi1.jpg", 0, 0);
-	getimage(pimg_xiangzi2, "xiangzi2.jpg", 0, 0);
-	getimage(pimg_zhongdian, "zhongdian.jpg", 0, 0);
-	getimage(pimg_renshang1, "renshang1.jpg", 0, 0);
-	getimage(pimg_renshang2, "renshang2.jpg", 0, 0);
-	getimage(pimg_renxia1, "renxia1.jpg", 0, 0);
-	getimage(pimg_renxia2, "renxia2.jpg", 0, 0);
-	getimage(pimg_renyou1, "renyou1.jpg", 0, 0);
-	getimage(pimg_renyou2, "renyou2.jpg", 0, 0);
-	getimage(pimg_renzuo1, "renzuo1.jpg", 0, 0);
-	getimage(pimg_renzuo2, "renzuo2.jpg", 0, 0);
-	getimage(pimg_kongbai, "kongbai.jpg", 0, 0);
+	getimage(pimg_wall, "data\\Picture\\wall.jpg", 0, 0);
+	getimage(pimg_land, "data\\Picture\\land.jpg", 0, 0);
+	getimage(pimg_BoxYellow, "data\\Picture\\BoxYellow.jpg", 0, 0);
+	getimage(pimg_BoxRed, "data\\Picture\\BoxRed.jpg", 0, 0);
+	getimage(pimg_aim, "data\\Picture\\aim.jpg", 0, 0);
+	getimage(pimg_ManUP1, "data\\Picture\\ManUP1.jpg", 0, 0);
+	getimage(pimg_ManUP2, "data\\Picture\\ManUP2.jpg", 0, 0);
+	getimage(pimg_ManDOWN1, "data\\Picture\\ManDOWN1.jpg", 0, 0);
+	getimage(pimg_ManDOWN2, "data\\Picture\\ManDOWN2.jpg", 0, 0);
+	getimage(pimg_ManRIGHT1, "data\\Picture\\ManRIGHT1.jpg", 0, 0);
+	getimage(pimg_ManRIGHT2, "data\\Picture\\ManRIGHT2.jpg", 0, 0);
+	getimage(pimg_ManLEFT1, "data\\Picture\\ManLEFT1.jpg", 0, 0);
+	getimage(pimg_ManLEFT2, "data\\Picture\\ManLEFT2.jpg", 0, 0);
+	getimage(pimg_black, "data\\Picture\\black.jpg", 0, 0);
 
 	//定义及初始化地图
 	char map[maps_num][50][50] = {
@@ -553,45 +553,45 @@ char mainloop(int level)
 		for (t = 0; t < strlen(map[level][0]); t++)
 		{
 			if (map[level][i][t] == '|' || map[level][i][t] == '=')
-				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_kongbai);
+				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_black);
 			if (map[level][i][t] == ' ')
-				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_diban);
+				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_land);
 			if (map[level][i][t] == 'O')
-				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_xiangzi1);
+				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_BoxYellow);
 			if (map[level][i][t] == 'Q')
-				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_xiangzi2);
+				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_BoxRed);
 			if (map[level][i][t] == '#')
-				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_qiang);
+				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_wall);
 			if (map[level][i][t] == 'X')
-				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_zhongdian);
+				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_aim);
 			if (map[level][i][t] == '@')
 				if (ch == 'd' || ch == 'D')
 				{
 					if (count % 5 > 0)
-						putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_renyou1);
+						putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManRIGHT1);
 					else
-						putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_renyou2);
+						putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManRIGHT2);
 				}
 				else if (ch == 'a' || ch == 'A')
 				{
 					if (count % 5 > 0)
-						putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_renzuo1);
+						putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManLEFT1);
 					else
-						putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_renzuo2);
+						putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManLEFT2);
 				}
 				else if (ch == 'w' || ch == 'W')
 				{
 					if (count % 5 > 0)
-						putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_renshang1);
+						putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManUP1);
 					else
-						putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_renshang2);
+						putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManUP2);
 				}
 				else
 				{
 					if (count % 5 > 0)
-						putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_renxia1);
+						putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManDOWN1);
 					else
-						putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_renxia2);
+						putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManDOWN2);
 				}
 		}
 		if (map[level][i][1] == '|')
@@ -634,9 +634,8 @@ char mainloop(int level)
 					step_num++;
 					last_step = ch;//存储上一步信息
 
-					mciSendString(TEXT("close huadong"), NULL, 0, NULL);
-					mciSendString(TEXT("open huadong.wav alias huadong"), NULL, 0, NULL);
-					mciSendString(TEXT("play huadong"), NULL, 0, NULL);
+					mciSendString(TEXT("seek Boxmove to 0"), NULL, 0, NULL);
+					mciSendString(TEXT("play Boxmove"), NULL, 0, NULL);
 				}
 				break;
 				//向上移动
@@ -661,9 +660,8 @@ char mainloop(int level)
 					step_num++;
 					last_step = ch;//存储上一步信息
 
-					mciSendString(TEXT("close huadong"), NULL, 0, NULL);
-					mciSendString(TEXT("open huadong.wav alias huadong"), NULL, 0, NULL);
-					mciSendString(TEXT("play huadong"), NULL, 0, NULL);
+					mciSendString(TEXT("seek Boxmove to 0"), NULL, 0, NULL);
+					mciSendString(TEXT("play Boxmove"), NULL, 0, NULL);
 				}
 				break;
 				//向左移动
@@ -688,9 +686,8 @@ char mainloop(int level)
 					step_num++;
 					last_step = ch;//存储上一步信息
 
-					mciSendString(TEXT("close huadong"), NULL, 0, NULL);
-					mciSendString(TEXT("open huadong.wav alias huadong"), NULL, 0, NULL);
-					mciSendString(TEXT("play huadong"), NULL, 0, NULL);
+					mciSendString(TEXT("seek Boxmove to 0"), NULL, 0, NULL);
+					mciSendString(TEXT("play Boxmove"), NULL, 0, NULL);
 				}
 				break;
 				//向右移动
@@ -715,9 +712,8 @@ char mainloop(int level)
 					step_num++;
 					last_step = ch;//存储上一步信息
 
-					mciSendString(TEXT("close huadong"), NULL, 0, NULL);
-					mciSendString(TEXT("open huadong.wav alias huadong"), NULL, 0, NULL);
-					mciSendString(TEXT("play huadong"), NULL, 0, NULL);
+					mciSendString(TEXT("seek Boxmove to 0"), NULL, 0, NULL);
+					mciSendString(TEXT("play Boxmove"), NULL, 0, NULL);
 				}
 				break;
 
@@ -836,45 +832,45 @@ char mainloop(int level)
 			for (t = 0; t < strlen(map[level][0]); t++)
 			{
 				if (map[level][i][t] == '|' || map[level][i][t] == '=')
-					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_kongbai);
+					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_black);
 				if (map[level][i][t] == ' ')
-					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_diban);
+					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_land);
 				if (map[level][i][t] == 'O')
-					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_xiangzi1);
+					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_BoxYellow);
 				if (map[level][i][t] == 'Q')
-					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_xiangzi2);
+					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_BoxRed);
 				if (map[level][i][t] == '#')
-					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_qiang);
+					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_wall);
 				if (map[level][i][t] == 'X')
-					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_zhongdian);
+					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_aim);
 				if (map[level][i][t] == '@')
 					if (ch == 'd' || ch == 'D')
 					{
 						if (count % 5 > 0)
-							putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_renyou1);
+							putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManRIGHT1);
 						else
-							putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_renyou2);
+							putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManRIGHT2);
 					}
 					else if (ch == 'a' || ch == 'A')
 					{
 						if (count % 5 > 0)
-							putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_renzuo1);
+							putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManLEFT1);
 						else
-							putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_renzuo2);
+							putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManLEFT2);
 					}
 					else if (ch == 'w' || ch == 'W')
 					{
 						if (count % 5 > 0)
-							putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_renshang1);
+							putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManUP1);
 						else
-							putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_renshang2);
+							putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManUP2);
 					}
 					else
 					{
 						if (count % 5 > 0)
-							putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_renxia1);
+							putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManDOWN1);
 						else
-							putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_renxia2);
+							putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManDOWN2);
 					}
 			}
 			if (map[level][i][1] == '|')
@@ -913,20 +909,20 @@ char mainloop(int level)
 			}
 		}
 
-		delimage(pimg_qiang);
-		delimage(pimg_diban);
-		delimage(pimg_xiangzi1);
-		delimage(pimg_xiangzi2);
-		delimage(pimg_zhongdian);
-		delimage(pimg_renshang1);
-		delimage(pimg_renshang2);
-		delimage(pimg_renxia1);
-		delimage(pimg_renxia2);
-		delimage(pimg_renyou1);
-		delimage(pimg_renyou2);
-		delimage(pimg_renzuo1);
-		delimage(pimg_renzuo2);
-		delimage(pimg_kongbai);
+		delimage(pimg_wall);
+		delimage(pimg_land);
+		delimage(pimg_BoxYellow);
+		delimage(pimg_BoxRed);
+		delimage(pimg_aim);
+		delimage(pimg_ManUP1);
+		delimage(pimg_ManUP2);
+		delimage(pimg_ManDOWN1);
+		delimage(pimg_ManDOWN2);
+		delimage(pimg_ManRIGHT1);
+		delimage(pimg_ManRIGHT2);
+		delimage(pimg_ManLEFT1);
+		delimage(pimg_ManLEFT2);
+		delimage(pimg_black);
 		return option;
 	}
 
@@ -954,38 +950,38 @@ char mainloop(int level)
 		{
 			cleardevice();
 
-			delimage(pimg_qiang);
-			delimage(pimg_diban);
-			delimage(pimg_xiangzi1);
-			delimage(pimg_xiangzi2);
-			delimage(pimg_zhongdian);
-			delimage(pimg_renshang1);
-			delimage(pimg_renshang2);
-			delimage(pimg_renxia1);
-			delimage(pimg_renxia2);
-			delimage(pimg_renyou1);
-			delimage(pimg_renyou2);
-			delimage(pimg_renzuo1);
-			delimage(pimg_renzuo2);
-			delimage(pimg_kongbai);
+			delimage(pimg_wall);
+			delimage(pimg_land);
+			delimage(pimg_BoxYellow);
+			delimage(pimg_BoxRed);
+			delimage(pimg_aim);
+			delimage(pimg_ManUP1);
+			delimage(pimg_ManUP2);
+			delimage(pimg_ManDOWN1);
+			delimage(pimg_ManDOWN2);
+			delimage(pimg_ManRIGHT1);
+			delimage(pimg_ManRIGHT2);
+			delimage(pimg_ManLEFT1);
+			delimage(pimg_ManLEFT2);
+			delimage(pimg_black);
 			return option;
 		}
 	}
 
-	delimage(pimg_qiang);
-	delimage(pimg_diban);
-	delimage(pimg_xiangzi1);
-	delimage(pimg_xiangzi2);
-	delimage(pimg_zhongdian);
-	delimage(pimg_renshang1);
-	delimage(pimg_renshang2);
-	delimage(pimg_renxia1);
-	delimage(pimg_renxia2);
-	delimage(pimg_renyou1);
-	delimage(pimg_renyou2);
-	delimage(pimg_renzuo1);
-	delimage(pimg_renzuo2);
-	delimage(pimg_kongbai);
+	delimage(pimg_wall);
+	delimage(pimg_land);
+	delimage(pimg_BoxYellow);
+	delimage(pimg_BoxRed);
+	delimage(pimg_aim);
+	delimage(pimg_ManUP1);
+	delimage(pimg_ManUP2);
+	delimage(pimg_ManDOWN1);
+	delimage(pimg_ManDOWN2);
+	delimage(pimg_ManRIGHT1);
+	delimage(pimg_ManRIGHT2);
+	delimage(pimg_ManLEFT1);
+	delimage(pimg_ManLEFT2);
+	delimage(pimg_black);
 	return option;
 }
 

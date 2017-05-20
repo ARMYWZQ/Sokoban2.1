@@ -1,9 +1,18 @@
 //==========================
-//程序名称：推箱子2.0
+//程序名称：推箱子
+//版本号：2.1
 //制作人：杨新瑞
 //创建时间：2017.1.30 9:52
-//上次修改时间：2017.2.11 20:59
+//完工时间：2017.2.11 20:59
 //总制作天数：3
+//
+//更新日志：
+//	2.0：
+//	2017.5.20
+//	更改图片音乐素材位置
+//	优化音频函数
+//	优化图片加载函数
+//
 //==========================
 #include"head.h"
 
@@ -71,7 +80,7 @@ int main(void)
 			if (option == 'x' || option == 'X')//选关
 			{
 				level_option = 1;
-				while (1)
+				while (is_run())
 				{
 					xuanguan(level_option);
 					ch = NULL;
@@ -122,7 +131,7 @@ int main(void)
 void main_interface1()
 {
 	PIMAGE pimg_logo = newimage();
-	getimage(pimg_logo, "logo.jpg", 0, 0);
+	getimage(pimg_logo, "data\\Picture\\logo.jpg", 0, 0);
 
 	//清屏
 	cleardevice();
@@ -148,7 +157,7 @@ void main_interface1()
 void main_interface2()
 {
 	PIMAGE pimg_logo = newimage();
-	getimage(pimg_logo, "logo.jpg", 0, 0);
+	getimage(pimg_logo, "data\\Picture\\logo.jpg", 0, 0);
 	//清屏
 	cleardevice();
 
