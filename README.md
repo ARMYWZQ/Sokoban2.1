@@ -1,5 +1,5 @@
-# Sokoban2.0
-一个基于EGE图形库的C++推箱子游戏<br>
+# Sokoban2.1
+一个基于EGE图形库的C风格C++推箱子游戏<br>
 本游戏使用mmsystem API播放音效<br>
 游戏共35关，完美还原经典关卡<br>
 
