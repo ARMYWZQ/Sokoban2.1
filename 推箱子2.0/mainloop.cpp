@@ -54,7 +54,7 @@ void mainloop()
 				level_option = 1;
 				while (is_run())
 				{
-					xuanguan(level_option);
+					selectLevel(level_option);
 					ch = NULL;
 					ch = getch();
 
@@ -92,7 +92,7 @@ void mainloop()
 			break;
 	}
 
-	jieyu();
+	endmovie();
 	Sleep(2000);
 }
 
@@ -154,7 +154,7 @@ void main_interface2()
 	delimage(pimg_logo);
 }
 
-void jieyu()
+void endmovie()
 {
 	//«Â∆¡
 	cleardevice();
@@ -179,7 +179,7 @@ void jieyu()
 	outtextxy(330, 200, "SIRI");
 }
 
-void xuanguan(int level)
+void selectLevel(int level)
 {
 	//«Â∆¡
 	cleardevice();

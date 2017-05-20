@@ -5,6 +5,7 @@ void pause();
 void lastlevel();
 void passlevel(int step_num);
 
+
 char gameloop(int level)
 {
 	mciSendString(TEXT("open Boxmove.wav alias Boxmove"), NULL, 0, NULL);
@@ -38,456 +39,11 @@ char gameloop(int level)
 	getimage(pimg_ManLEFT1, "data\\Picture\\ManLEFT1.jpg", 0, 0);
 	getimage(pimg_ManLEFT2, "data\\Picture\\ManLEFT2.jpg", 0, 0);
 	getimage(pimg_black, "data\\Picture\\black.jpg", 0, 0);
-
+	
 	//定义及初始化地图
-	char map[maps_num][50][50] = {
-		{
-			"|========|",
-			"|==###===|",
-			"|==#X#===|",
-			"|==# ####|",
-			"|###O OX#|",
-			"|#X O@###|",
-			"|####O#==|",
-			"|===#X#==|",
-			"|===###==|",
-			"||=======|"
-		},//第1关
-		{
-			"|=========|",
-			"|#####====|",
-			"|#@  #====|",
-			"|# OO#=###|",
-			"|# O #=#X#|",
-			"|### ###X#|",
-			"|=##    X#|",
-			"|=#   #  #|",
-			"|=#   ####|",
-			"|=#####===|",
-			"||========|"
-		},//第2关
-		{
-			"|==========|",
-			"|=#######==|",
-			"|=#     ###|",
-			"|##O###   #|",
-			"|# @ O  O #|",
-			"|# XX# O ##|",
-			"|##XX#   #=|",
-			"|=########=|",
-			"||=========|"
-		},//第3关
-		{
-			"|======|",
-			"|=####=|",
-			"|##  #=|",
-			"|#@O #=|",
-			"|##O ##|",
-			"|## O #|",
-			"|#XO  #|",
-			"|#XXQX#|",
-			"|######|",
-			"||=====|"
-		},//第4关
-		{
-			"|========|",
-			"|=#####==|",
-			"|=# @###=|",
-			"|=# O  #=|",
-			"|### # ##|",
-			"|#X# #  #|",
-			"|#XO  # #|",
-			"|#X   O #|",
-			"|########|",
-			"||=======|"
-		},//第5关
-		{
-			"|=============|",
-			"|===#######===|",
-			"|####     #===|",
-			"|#   X### #===|",
-			"|# # #    ##==|",
-			"|# # O O#X #==|",
-			"|# #  Q  # #==|",
-			"|# X#O O # #==|",
-			"|##    # # ###|",
-			"|=# ###X    @#|",
-			"|=#     ##   #|",
-			"|=############|",
-			"||============|"
-		},//第6关
-		{
-			"|==========|",
-			"|===#######|",
-			"|==##  # @#|",
-			"|==#   #O #|",
-			"|==#O  O  #|",
-			"|==# O##  #|",
-			"|### O # ##|",
-			"|#XXXXX  #=|",
-			"|#########=|",
-			"||=========|"
-		},//第7关
-		{
-			"|==========|",
-			"|===######=|",
-			"|=###    #=|",
-			"|##X O## ##|",
-			"|#XXO O @ #|",
-			"|#XX O O ##|",
-			"|######  #=|",
-			"|=====####=|",
-			"||=========|"
-		},//第8关
-		{
-			"|===========|",
-			"|=#########=|",
-			"|=#  ##   #=|",
-			"|=#   O   #=|",
-			"|=#O ### O#=|",
-			"|=# #XXX# #=|",
-			"|## #XXX# ##|",
-			"|# O  O  O #|",
-			"|#     #  @#|",
-			"|###########|",
-			"||==========|"
-		},//第9关
-		{
-			"|========|",
-			"|==######|",
-			"|==#    #|",
-			"|###OOO #|",
-			"|#@ OXX #|",
-			"|# OXXX##|",
-			"|####  #=|",
-			"|===####=|",
-			"||=======|"
-		},//第10关
-		{
-			"|============|",
-			"|=####==#####|",
-			"|##  #==#   #|",
-			"|# O ####O  #|",
-			"|#  OXXXX O #|",
-			"|##    # @ ##|",
-			"|=##########=|",
-			"||===========|"
-		},//第11关
-		{
-			"|========|",
-			"|==#####=|",
-			"|###  @#=|",
-			"|#  OX ##|",
-			"|#  XOX #|",
-			"|### QO #|",
-			"|==#   ##|",
-			"|==######|",
-			"||=======|"
-		},//第12关
-		{
-			"|========|",
-			"|==####==|",
-			"|==#XX#==|",
-			"|=## X##=|",
-			"|=#  OX#=|",
-			"|## O  ##|",
-			"|#  #OO #|",
-			"|#  @   #|",
-			"|########|",
-			"||=======|"
-		},//第13关
-		{
-			"|========|",
-			"|########|",
-			"|#  #   #|",
-			"|# OXXO #|",
-			"|#@OXQ ##|",
-			"|# OXXO #|",
-			"|#  #   #|",
-			"|########|",
-			"||=======|"
-		},//第14关
-		{
-			"|========|",
-			"|=######=|",
-			"|##    ##|",
-			"|# O OO #|",
-			"|#XXXXXX#|",
-			"|# OO O #|",
-			"|### @###|",
-			"|==####==|",
-			"||=======|"
-		},//第15关
-		{
-			"|==========|",
-			"|==########|",
-			"|==#    ###|",
-			"|==# O    #|",
-			"|### O ## #|",
-			"|#XXX O   #|",
-			"|#XXXO#O ##|",
-			"|#### # O #|",
-			"|===#   @ #|",
-			"|===#######|",
-			"||=========|"
-		},//第16关
-		{
-			"|=========|",
-			"|######===|",
-			"|#    #===|",
-			"|# OOO##==|",
-			"|#  #XX###|",
-			"|##  XXO #|",
-			"|=#  @   #|",
-			"|=########|",
-			"||========|"
-		},//第17关
-		{
-			"|==========|",
-			"|==########|",
-			"|==#   #X #|",
-			"|=##  OXXX#|",
-			"|=#  O #QX#|",
-			"|## ##O# ##|",
-			"|#   O  O #|",
-			"|#   #    #|",
-			"|#######@ #|",
-			"|======####|",
-			"||=========|"
-		},//第18关
-		{
-			"|==========|",
-			"|=#######==|",
-			"|=#XXXX #==|",
-			"|###XXXO###|",
-			"|#  O#O O #|",
-			"|# OO  #O #|",
-			"|#    #   #|",
-			"|#### @ ###|",
-			"|===#####==|",
-			"||=========|"
-		},//第19关
-		{
-			"|=======|",
-			"|#######|",
-			"|#XXOXX#|",
-			"|#XX#XX#|",
-			"|# OOO #|",
-			"|#  O  #|",
-			"|# OOO #|",
-			"|#  #@ #|",
-			"|#######|",
-			"||======|"
-		},//第20关
-		{
-			"|===========|",
-			"|===######==|",
-			"|===# XXX#==|",
-			"|####XXXX#==|",
-			"|#  ###O ###|",
-			"|# O O  OO #|",
-			"|#@ O O    #|",
-			"|#   ###   #|",
-			"|#####=#####|",
-			"||==========|"
-		},//第21关
-		{
-			"|=========|",
-			"|########=|",
-			"|#      #=|",
-			"|# #OO  #=|",
-			"|# XXX# #=|",
-			"|##XXXO ##|",
-			"|=# ## O #|",
-			"|=#O  O  #|",
-			"|=#  #  @#|",
-			"|=########|",
-			"||========|"
-		},//第22关
-		{
-			"|==========|",
-			"|==#####===|",
-			"|###   ####|",
-			"|#   O  O #|",
-			"|# O @O   #|",
-			"|###OO#####|",
-			"|==#  XX#==|",
-			"|==#XXXX#==|",
-			"|==######==|",
-			"||=========|"
-		},//第23关
-		{
-			"|==============|",
-			"|######===#####|",
-			"|#    ###=#  X#|",
-			"|#  O O #=#XXX#|",
-			"|# #  O ###  X#|",
-			"|#  OOO   O @X#|",
-			"|###  O  O#  X#|",
-			"|==#  O#O #XXX#|",
-			"|==##     #  X#|",
-			"|===###########|",
-			"||=============|"
-		},//第24关
-		{
-			"|===========|",
-			"|=====######|",
-			"|=#####X   #|",
-			"|=#  #XX## #|",
-			"|=#  OXX   #|",
-			"|=#  # X# ##|",
-			"|### ##O#  #|",
-			"|# O    OO #|",
-			"|# #O#  #  #|",
-			"|#@  #######|",
-			"|#####======|",
-			"||==========|"
-		},//第25关
-		{
-			"|=============|",
-			"|=#########===|",
-			"|=#   ##  ####|",
-			"|=# O        #|",
-			"|=##O### ##  #|",
-			"|=#  ## Q # ##|",
-			"|=# OXXXXXX #=|",
-			"|## ### X # #=|",
-			"|#     O###O#=|",
-			"|#   #    O@#=|",
-			"|#####O# ####=|",
-			"|====#   #====|",
-			"|====#####====|",
-			"||============|"
-		},//第26关
-		{
-			"|===============|",
-			"|======#########|",
-			"|======#       #|",
-			"|======# # # # #|",
-			"|======#  O O# #|",
-			"|#######   O   #|",
-			"|#XX#  ## O O# #|",
-			"|#XX   ## O O  #|",
-			"|#XX#  ## ######|",
-			"|#XX# # O O #===|",
-			"|#XX     O  #===|",
-			"|#  ###@  ###===|",
-			"|####=#####=====|",
-			"||==============|"
-		},//第27关
-		{
-			"|================|",
-			"|====####========|",
-			"|#####  #========|",
-			"|#  O O #=#######|",
-			"|#   O  #=#QXQXQ#|",
-			"|## O O ###XQXQX#|",
-			"|=#O O  #  QXQXQ#|",
-			"|=#@O O    XQXQX#|",
-			"|=#O O  #  QXQXQ#|",
-			"|## O O ###XQXQX#|",
-			"|#   O  #=#QXQXQ#|",
-			"|#  O O #=#######|",
-			"|#####  #========|",
-			"|====####========|",
-			"||===============|"
-		},//第28关
-		{
-			"|=========|",
-			"|########=|",
-			"|#XXXXXX#=|",
-			"|#  O # ##|",
-			"|# O # O #|",
-			"|##O O O #|",
-			"|=#  @   #|",
-			"|=########|",
-			"||========|"
-		},//第29关
-		{
-			"|============|",
-			"|==##########|",
-			"|###    X@  #|",
-			"|#   ##O##  #|",
-			"|#   Q X X ##|",
-			"|## O##O## #=|",
-			"|=#    X   #=|",
-			"|=##########=|",
-			"||===========|"
-		},//第30关
-		{
-			"|=========|",
-			"|===######|",
-			"|####X  @#|",
-			"|#  OOO  #|",
-			"|#X##X##X#|",
-			"|#   O   #|",
-			"|#  OX# ##|",
-			"|####   #=|",
-			"|===#####=|",
-			"||========|"
-		},//第31关
-		{
-			"|========|",
-			"|=######=|",
-			"|=#X XX#=|",
-			"|=#X OX#=|",
-			"|###  O##|",
-			"|# O  O #|",
-			"|# #O## #|",
-			"|#   @  #|",
-			"|########|",
-			"||=======|"
-		},//第32关
-		{
-			"|==============|",
-			"|====######====|",
-			"|==###    ###==|",
-			"|==#   #O   ###|",
-			"|==#   O   OO #|",
-			"|==# OO #O    #|",
-			"|==##   O   O #|",
-			"|###### #O#####|",
-			"|#XX@ #O  #====|",
-			"|#X#XX  O##====|",
-			"|#XXXXO# #=====|",
-			"|#XXXX   #=====|",
-			"|#########=====|",
-			"||=============|"
-		},//第33关
-		{
-			"|===============|",
-			"|###############|",
-			"|#      #      #|",
-			"|# O #O # O##O #|",
-			"|# #  O #      #|",
-			"|#   ##O#O##OO #|",
-			"|# # # XXX #   #|",
-			"|# O  X # XO   #|",
-			"|# O#@OXXX# #  #|",
-			"|#    X # X  O #|",
-			"|# ##XO###OX # #|",
-			"|# # OXXXXX ## #|",
-			"|#             #|",
-			"|###############|",
-			"||==============|"
-		},//第34关
-		{
-			"|==========|",
-			"|#########=|",
-			"|#   ##  #=|",
-			"|# # O O #=|",
-			"|#  QX#  #=|",
-			"|## #X@X##=|",
-			"|##O###Q###|",
-			"|#        #|",
-			"|#   ## # #|",
-			"|######   #|",
-			"|=====#####|",
-			"||=========|"
-		}//第35关
-	};
-
-
+	char map[50][50];
+	LoadMap(level, map);
+	
 	//变量申明
 	//i,t 循环计数器, x 纵坐标, y 横坐标, pass 通关判断条件
 	//restep_num 记录每局撤销次数,step_num 记录本局总步数,wide 地图宽度
@@ -508,8 +64,8 @@ char gameloop(int level)
 	//初始化起始位置
 	for (i = 0; i < 20; i++)
 	{
-		for (t = 0; map[level][i][t] != '\0'; t++)
-			if (map[level][i][t] == '@')
+		for (t = 0; map[i][t] != '\0'; t++)
+			if (map[i][t] == '@')
 			{
 				x = i;
 				y = t;
@@ -521,16 +77,16 @@ char gameloop(int level)
 	//寻找终点坐标
 	for (i = 2; i < 20; i++)
 	{
-		for (t = 2; map[level][i][t] != '\0'; t++)
+		for (t = 2; map[i][t] != '\0'; t++)
 		{
-			if (map[level][i][t] == 'X' || map[level][i][t] == 'Q')
+			if (map[i][t] == 'X' || map[i][t] == 'Q')
 			{
 				X_num[xnum] = i;
 				Y_num[ynum] = t;
 				xnum++;
 				ynum++;
 			}
-			if (map[level][i][1] == '|')
+			if (map[i][1] == '|')
 			{
 				i = 99;
 				break;
@@ -539,32 +95,32 @@ char gameloop(int level)
 	}
 	//计算地图高度
 	for (high = 0; high < 20; high++)
-		if (map[level][high][0] != '|')
+		if (map[high][0] != '|')
 			break;
 	high = (13 - high) / 2;
 
 	//计算地图宽度
-	wide = (16 - strlen(map[level][0])) / 2;
+	wide = (16 - strlen(map[0])) / 2;
 
 	//打印地图
 	game_face(level, step_num, restep_num);
 	for (i = 1; i <= 17; i++)
 	{
-		for (t = 0; t < strlen(map[level][0]); t++)
+		for (t = 0; t < strlen(map[0]); t++)
 		{
-			if (map[level][i][t] == '|' || map[level][i][t] == '=')
+			if (map[i][t] == '|' || map[i][t] == '=')
 				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_black);
-			if (map[level][i][t] == ' ')
+			if (map[i][t] == ' ')
 				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_land);
-			if (map[level][i][t] == 'O')
+			if (map[i][t] == 'O')
 				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_BoxYellow);
-			if (map[level][i][t] == 'Q')
+			if (map[i][t] == 'Q')
 				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_BoxRed);
-			if (map[level][i][t] == '#')
+			if (map[i][t] == '#')
 				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_wall);
-			if (map[level][i][t] == 'X')
+			if (map[i][t] == 'X')
 				putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_aim);
-			if (map[level][i][t] == '@')
+			if (map[i][t] == '@')
 				if (ch == 'd' || ch == 'D')
 				{
 					if (count % 5 > 0)
@@ -594,7 +150,7 @@ char gameloop(int level)
 						putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManDOWN2);
 				}
 		}
-		if (map[level][i][1] == '|')
+		if (map[i][1] == '|')
 			break;
 	}
 
@@ -614,19 +170,19 @@ char gameloop(int level)
 			{
 				//向下移动
 			case 's':
-				if (map[level][x + 1][y] == ' ' || map[level][x + 1][y] == 'X')
+				if (map[x + 1][y] == ' ' || map[x + 1][y] == 'X')
 				{
-					map[level][x][y] = ' ';
+					map[x][y] = ' ';
 					x++;
-					map[level][x][y] = '@';
+					map[x][y] = '@';
 					step_num++;
 				}
-				else if ((map[level][x + 1][y] == 'O' || map[level][x + 1][y] == 'Q') && map[level][x + 2][y] != 'O' && map[level][x + 2][y] != 'Q' && map[level][x + 2][y] != '#')
+				else if ((map[x + 1][y] == 'O' || map[x + 1][y] == 'Q') && map[x + 2][y] != 'O' && map[x + 2][y] != 'Q' && map[x + 2][y] != '#')
 				{
-					map[level][x][y] = ' ';
+					map[x][y] = ' ';
 					x++;
-					map[level][x][y] = '@';
-					map[level][x + 1][y] = 'O';
+					map[x][y] = '@';
+					map[x + 1][y] = 'O';
 					lstep = 1;
 					x_box = x;
 					y_box = y;
@@ -640,19 +196,19 @@ char gameloop(int level)
 				break;
 				//向上移动
 			case 'w':
-				if (map[level][x - 1][y] == ' ' || map[level][x - 1][y] == 'X')
+				if (map[x - 1][y] == ' ' || map[x - 1][y] == 'X')
 				{
-					map[level][x][y] = ' ';
+					map[x][y] = ' ';
 					x--;
-					map[level][x][y] = '@';
+					map[x][y] = '@';
 					step_num++;
 				}
-				else if ((map[level][x - 1][y] == 'O' || map[level][x - 1][y] == 'Q') && map[level][x - 2][y] != 'O' && map[level][x - 2][y] != 'Q' && map[level][x - 2][y] != '#')
+				else if ((map[x - 1][y] == 'O' || map[x - 1][y] == 'Q') && map[x - 2][y] != 'O' && map[x - 2][y] != 'Q' && map[x - 2][y] != '#')
 				{
-					map[level][x][y] = ' ';
+					map[x][y] = ' ';
 					x--;
-					map[level][x][y] = '@';
-					map[level][x - 1][y] = 'O';
+					map[x][y] = '@';
+					map[x - 1][y] = 'O';
 					lstep = 1;
 					x_box = x;
 					y_box = y;
@@ -666,19 +222,19 @@ char gameloop(int level)
 				break;
 				//向左移动
 			case 'a':
-				if (map[level][x][y - 1] == ' ' || map[level][x][y - 1] == 'X')
+				if (map[x][y - 1] == ' ' || map[x][y - 1] == 'X')
 				{
-					map[level][x][y] = ' ';
+					map[x][y] = ' ';
 					y--;
-					map[level][x][y] = '@';
+					map[x][y] = '@';
 					step_num++;
 				}
-				else if ((map[level][x][y - 1] == 'O' || map[level][x][y - 1] == 'Q') && map[level][x][y - 2] != 'O' && map[level][x][y - 2] != 'Q' && map[level][x][y - 2] != '#')
+				else if ((map[x][y - 1] == 'O' || map[x][y - 1] == 'Q') && map[x][y - 2] != 'O' && map[x][y - 2] != 'Q' && map[x][y - 2] != '#')
 				{
-					map[level][x][y] = ' ';
+					map[x][y] = ' ';
 					y--;
-					map[level][x][y] = '@';
-					map[level][x][y - 1] = 'O';
+					map[x][y] = '@';
+					map[x][y - 1] = 'O';
 					lstep = 1;
 					x_box = x;
 					y_box = y;
@@ -692,19 +248,19 @@ char gameloop(int level)
 				break;
 				//向右移动
 			case 'd':
-				if (map[level][x][y + 1] == ' ' || map[level][x][y + 1] == 'X')
+				if (map[x][y + 1] == ' ' || map[x][y + 1] == 'X')
 				{
-					map[level][x][y] = ' ';
+					map[x][y] = ' ';
 					y++;
-					map[level][x][y] = '@';
+					map[x][y] = '@';
 					step_num++;
 				}
-				else if ((map[level][x][y + 1] == 'O' || map[level][x][y + 1] == 'Q') && map[level][x][y + 2] != 'O' && map[level][x][y + 2] != 'Q'&&map[level][x][y + 2] != '#')
+				else if ((map[x][y + 1] == 'O' || map[x][y + 1] == 'Q') && map[x][y + 2] != 'O' && map[x][y + 2] != 'Q'&&map[x][y + 2] != '#')
 				{
-					map[level][x][y] = ' ';
+					map[x][y] = ' ';
 					y++;
-					map[level][x][y] = '@';
-					map[level][x][y + 1] = 'O';
+					map[x][y] = '@';
+					map[x][y + 1] = 'O';
 					lstep = 1;
 					x_box = x;
 					y_box = y;
@@ -744,52 +300,52 @@ char gameloop(int level)
 			{
 				//返还向下移动
 			case 's':
-				map[level][x][y] = ' ';
-				map[level][x_box + 1][y_box] = ' ';
-				map[level][x_box][y_box] = 'O';
+				map[x][y] = ' ';
+				map[x_box + 1][y_box] = ' ';
+				map[x_box][y_box] = 'O';
 				x_box--;
 				x = x_box;
 				y = y_box;
-				map[level][x][y] = '@';
+				map[x][y] = '@';
 				step_num = rerestep_num;
 				restep_num++;
 				lstep = 0;
 				break;
 				//返还向上移动
 			case 'w':
-				map[level][x][y] = ' ';
-				map[level][x_box - 1][y_box] = ' ';
-				map[level][x_box][y_box] = 'O';
+				map[x][y] = ' ';
+				map[x_box - 1][y_box] = ' ';
+				map[x_box][y_box] = 'O';
 				x_box++;
 				x = x_box;
 				y = y_box;
-				map[level][x][y] = '@';
+				map[x][y] = '@';
 				step_num = rerestep_num;
 				restep_num++;
 				lstep = 0;
 				break;
 				//返还向左移动
 			case 'a':
-				map[level][x][y] = ' ';
-				map[level][x_box][y_box - 1] = ' ';
-				map[level][x_box][y_box] = 'O';
+				map[x][y] = ' ';
+				map[x_box][y_box - 1] = ' ';
+				map[x_box][y_box] = 'O';
 				y_box++;
 				x = x_box;
 				y = y_box;
-				map[level][x][y] = '@';
+				map[x][y] = '@';
 				step_num = rerestep_num;
 				restep_num++;
 				lstep = 0;
 				break;
 				//返还向右移动
 			case 'd':
-				map[level][x][y] = ' ';
-				map[level][x_box][y_box + 1] = ' ';
-				map[level][x_box][y_box] = 'O';
+				map[x][y] = ' ';
+				map[x_box][y_box + 1] = ' ';
+				map[x_box][y_box] = 'O';
 				y_box--;
 				x = x_box;
 				y = y_box;
-				map[level][x][y] = '@';
+				map[x][y] = '@';
 				step_num = rerestep_num;
 				restep_num++;
 				lstep = 0;
@@ -803,10 +359,10 @@ char gameloop(int level)
 		//还原终点标记
 		for (i = 0; X_num[i] != 0; i++)
 		{
-			if (map[level][X_num[i]][Y_num[i]] == ' ')
-				map[level][X_num[i]][Y_num[i]] = 'X';
-			if (map[level][X_num[i]][Y_num[i]] == 'O')
-				map[level][X_num[i]][Y_num[i]] = 'Q';
+			if (map[X_num[i]][Y_num[i]] == ' ')
+				map[X_num[i]][Y_num[i]] = 'X';
+			if (map[X_num[i]][Y_num[i]] == 'O')
+				map[X_num[i]][Y_num[i]] = 'Q';
 		}
 
 
@@ -829,21 +385,21 @@ char gameloop(int level)
 		game_face(level, step_num, restep_num);
 		for (i = 1; i <= 17; i++)
 		{
-			for (t = 0; t < strlen(map[level][0]); t++)
+			for (t = 0; t < strlen(map[0]); t++)
 			{
-				if (map[level][i][t] == '|' || map[level][i][t] == '=')
+				if (map[i][t] == '|' || map[i][t] == '=')
 					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_black);
-				if (map[level][i][t] == ' ')
+				if (map[i][t] == ' ')
 					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_land);
-				if (map[level][i][t] == 'O')
+				if (map[i][t] == 'O')
 					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_BoxYellow);
-				if (map[level][i][t] == 'Q')
+				if (map[i][t] == 'Q')
 					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_BoxRed);
-				if (map[level][i][t] == '#')
+				if (map[i][t] == '#')
 					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_wall);
-				if (map[level][i][t] == 'X')
+				if (map[i][t] == 'X')
 					putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_aim);
-				if (map[level][i][t] == '@')
+				if (map[i][t] == '@')
 					if (ch == 'd' || ch == 'D')
 					{
 						if (count % 5 > 0)
@@ -873,14 +429,14 @@ char gameloop(int level)
 							putimage(50 + t * 40 + wide * 40, 20 + i * 40 + high * 40, pimg_ManDOWN2);
 					}
 			}
-			if (map[level][i][1] == '|')
+			if (map[i][1] == '|')
 				break;
 		}
 
 		//通关条件判定
 		for (i = 0; X_num[i] != 0; i++)
 		{
-			if (map[level][X_num[i]][Y_num[i]] == 'Q')
+			if (map[X_num[i]][Y_num[i]] == 'Q')
 				pass++;
 		}
 		if (pass == xnum)
@@ -1078,4 +634,19 @@ void passlevel(int step_num)
 	outtextxy(320, 350, "重玩(Q)");
 	outtextxy(480, 350, "下一关(N)");
 	outtextxy(700, 350, "菜单(M)");
+}
+
+void LoadMap(int level,char (*map)[50])
+{
+	char buffer[256];
+	FILE *fp;
+	sprintf(buffer, "data\\Map\\%d.txt", level+1);
+	fp = fopen(buffer,"r");
+	for(int i=0;;i++)
+	{
+		fgets(map[i], 256, fp);
+		if (map[i][1] == '|')
+			break;
+	}
+	fclose(fp);
 }

@@ -1,8 +1,10 @@
 #include<stdlib.h>
-#include<ege.h>
-#include<math.h>
-#include <graphics.h>
 #include<stdio.h>
+#include<string.h>
+#include<math.h>
+#include<ege.h>
+#include <graphics.h>
+
 #include <mmsystem.h>
 #include<string>
 #pragma comment(lib,"winmm.lib")
@@ -13,6 +15,6 @@ void mainloop();
 char gameloop(int level);
 void main_interface1();
 void main_interface2();
-void jieyu();
-void xuanguan(int level);
-
+void endmovie();
+void selectLevel(int level);
+void LoadMap(int level, char(*map)[50]);
